@@ -3,6 +3,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+
+---
+## 0.7.16 (2021-10-30)
+
+* fix mov seek null pointer crash
+
+---
+
+## 0.7.15 (2021-07-10)
+
+* add concrete rules for consumer proguard (Android)
+
+---
+
+## 0.7.12 (2021-07-10)
+
+* publish android aar to mavenCenter (Android)
+* upload android symbols to github release (Android)
+
+---
+
+## 0.7.10 (2021-05-15)
+
+* fix the lost bintray files (iOS)
+
 ---
 
 ## 0.7.8 (2020-07-11)

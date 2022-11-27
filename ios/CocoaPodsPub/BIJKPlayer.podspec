@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "BIJKPlayer"
-  spec.version      = "0.7.8"
+  spec.version      = "0.7.16"
   spec.summary      = "ijkplayer iOS video player SDK"
 
   spec.author       = { "befovy" => "befovy@gmail.com" }
@@ -62,6 +62,9 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios
   spec.ios.deployment_target = '8.0'
 
+  spec.xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
   # spec.osx.deployment_target = "10.7"
@@ -75,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
   
-  spec.source = { :http => "https://dl.bintray.com/befovytray/bijkplayer/f0.7.8/IJKMediaPlayer.tar.gz" }
+  spec.source = { :http => "https://github.com/befovy/ijkplayer/releases/download/f0.7.16/IJKMediaPlayer.tar.gz" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
