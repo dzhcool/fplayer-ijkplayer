@@ -42,7 +42,13 @@ TOOLS=tools
 FF_ALL_ARCHS_IOS6_SDK="armv7 armv7s i386"
 FF_ALL_ARCHS_IOS7_SDK="armv7 armv7s arm64 i386 x86_64"
 FF_ALL_ARCHS_IOS8_SDK="armv7 arm64 i386 x86_64"
-FF_ALL_ARCHS=$FF_ALL_ARCHS_IOS8_SDK
+# arm64：iPhoneX | iphone8 plus｜iPhone8｜ iPhone7| iphone7 plus | iphone6s plus｜iPhone6｜ iPhone6 plus｜iPhone5S | 　　　　iPad Air｜ iPad mini2(iPad mini with Retina Display)
+# armv7s：iPhone5｜iPhone5C｜iPad4(iPad with Retina Display)
+# armv7：iPhone4｜iPhone4S｜iPad｜iPad2｜iPad3｜iPad mini｜iPod Touch 3G｜iPod Touch4
+# i386 是针对intel通用的微处理器32位处理器
+# x86_64是针对x86架构64位处理器
+FF_ALL_ARCHS_IOS12_SDK="arm64 x86_64"
+FF_ALL_ARCHS=$FF_ALL_ARCHS_IOS12_SDK
 FF_TARGET=$1
 
 function echo_ffmpeg_version() {

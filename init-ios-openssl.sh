@@ -36,9 +36,9 @@ function pull_fork()
     cd -
 }
 
-pull_fork "armv7"
-pull_fork "armv7s"
+# pull_fork "armv7"
+# pull_fork "armv7s"
 pull_fork "arm64"
-pull_fork "i386"
+# pull_fork "i386"
 pull_fork "x86_64"
 

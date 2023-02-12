@@ -47,3 +47,5 @@ xcshareddata
 # osx/
 cmake-build-debug/
 cmake-build-release/
+
+.cache/
