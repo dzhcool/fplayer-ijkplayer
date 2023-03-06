@@ -89,7 +89,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.source       = { :git => "http://EXAMPLE/fplayer-core.git", :tag => "#{spec.version}" }
-  spec.source = { :http => "https://github.com/befovy/ijkplayer/releases/download/f0.7.16/IJKMediaPlayer.tar.gz" }
+  spec.source = { :http => "https://github.com/FlutterPlayer/ijkplayer/releases/download/#{spec.version}/IJKMediaPlayer.tar.gz" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
