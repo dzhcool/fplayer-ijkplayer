@@ -28,23 +28,23 @@ lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${TARGET_NAME}.framework/${TARGE
 # Step 5. Convenience step to copy the framework to the project's directory
 cp -R "${UNIVERSAL_OUTPUTFOLDER}/${TARGET_NAME}.framework" "${PROJECT_DIR}/../"
 
-rm -v "${PROJECT_DIR}/../CocoaPodsPub/${TARGET_NAME}.tar.xz"
-rm -v "${PROJECT_DIR}/../CocoaPodsPub/${TARGET_NAME}.tar.gz"
-rm -v -rf "${PROJECT_DIR}/../CocoaPodsPub/${TARGET_NAME}.framework"
+rm -v "${PROJECT_DIR}/../CocoaPodsConfig/${TARGET_NAME}.tar.xz"
+rm -v "${PROJECT_DIR}/../CocoaPodsConfig/${TARGET_NAME}.tar.gz"
+rm -v -rf "${PROJECT_DIR}/../CocoaPodsConfig/${TARGET_NAME}.framework"
 
 
-cp -v "${PROJECT_DIR}/../../COPYING.LGPLv3" "${PROJECT_DIR}/../CocoaPodsPub/LICENSE"
+cp -v "${PROJECT_DIR}/../../COPYING.LGPLv3" "${PROJECT_DIR}/../CocoaPodsConfig/LICENSE"
 cd "${PROJECT_DIR}/.."
 
-tar vcfJ "CocoaPodsPub/${TARGET_NAME}.tar.xz" "${TARGET_NAME}.framework"
+tar vcfJ "CocoaPodsConfig/${TARGET_NAME}.tar.xz" "${TARGET_NAME}.framework"
 
-cd CocoaPodsPub
+cd CocoaPodsConfig
 
 tree ./
 tar -zcvf "${PROJECT_DIR}/../${TARGET_NAME}.tar.gz" ./
-mv "${PROJECT_DIR}/../${TARGET_NAME}.tar.gz" "${PROJECT_DIR}/../CocoaPodsPub/${TARGET_NAME}.tar.gz"
-mv "${PROJECT_DIR}/../${TARGET_NAME}.framework" "${PROJECT_DIR}/../CocoaPodsPub/${TARGET_NAME}.framework"
+mv "${PROJECT_DIR}/../${TARGET_NAME}.tar.gz" "${PROJECT_DIR}/../CocoaPodsConfig/${TARGET_NAME}.tar.gz"
+mv "${PROJECT_DIR}/../${TARGET_NAME}.framework" "${PROJECT_DIR}/../CocoaPodsConfig/${TARGET_NAME}.framework"
 
 
 # Step 6. Convenience step to open the project's directory in Finder
-open "${PROJECT_DIR}/../CocoaPodsPub"
+open "${PROJECT_DIR}/../CocoaPodsConfig"

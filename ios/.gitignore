@@ -1,13 +1,13 @@
 xcuserdata
 # xcshareddata
 *.xccheckout
-CocoaPodsPub/FIJKPlayer.framework
-CocoaPodsPub/IJKPlayer.framework
-CocoaPodsPub/FIJKPlayer.tar.gz
-CocoaPodsPub/IJKPlayer.tar.gz
-CocoaPodsPub/FIJKPlayer.tar.xz
-CocoaPodsPub/IJKPlayer.tar.xz
-CocoaPodsPub/IJKMediaPlayer.tar.xz
-CocoaPodsPub/IJKMediaPlayer.tar.gz
-CocoaPodsPub/IJKMediaPlayer.framework
-CocoaPodsPub/LICENSE
+CocoaPodsConfig/FIJKPlayer.framework
+CocoaPodsConfig/IJKPlayer.framework
+CocoaPodsConfig/FIJKPlayer.tar.gz
+CocoaPodsConfig/IJKPlayer.tar.gz
+CocoaPodsConfig/FIJKPlayer.tar.xz
+CocoaPodsConfig/IJKPlayer.tar.xz
+CocoaPodsConfig/IJKMediaPlayer.tar.xz
+CocoaPodsConfig/IJKMediaPlayer.tar.gz
+CocoaPodsConfig/IJKMediaPlayer.framework
+CocoaPodsConfig/LICENSE

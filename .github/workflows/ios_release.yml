@@ -43,5 +43,5 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: Release ${{ steps.tag.outputs.result }}
         draft: false
-        artifacts: "./ios/CocoaPodsPub/IJKMediaPlayer.tar.gz"
+        artifacts: "./ios/CocoaPodsConfig/IJKMediaPlayer.tar.gz"
         allowUpdates: true
