@@ -19,11 +19,11 @@ jobs:
 
     - name: Setup ndk
       run: |
-        yes 2>/dev/null | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;16.1.4479499" "cmake;3.10.2.4988404"
+        yes 2>/dev/null | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;21.1.6352462" "cmake;3.10.2.4988404"
 
     - name: Init extra for android
       run: |
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         bash init-android.sh
         bash init/init-android-boringssl.sh
         bash init/init-android-libsrt.sh
@@ -31,7 +31,7 @@ jobs:
     - name: Build ssl and ffmpeg
       run: |
         cd android/contrib
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         bash compile-boringssl.sh all
         wget --no-check-certificate https://raw.githubusercontent.com/FFmpeg/gas-preprocessor/master/gas-preprocessor.pl
         chmod +x gas-preprocessor.pl && sudo mv gas-preprocessor.pl /usr/local/bin/
