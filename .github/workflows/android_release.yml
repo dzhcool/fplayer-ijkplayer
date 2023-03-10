@@ -46,7 +46,7 @@ jobs:
         ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGN_KEY }}
         ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGN_PASSWORD }}
       run: |
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         ./gradlew build
         ./gradlew -PNEXUS_PASSWORD=${NEXUS_PASSWORD} :fijkplayer-full:uploadArchives
         zip -r Symbols.zip fijkplayer-full/build/intermediates/cmake/release/obj
