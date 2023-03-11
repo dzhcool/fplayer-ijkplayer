@@ -40,7 +40,7 @@ jobs:
     - name: Gradle build and publish
       working-directory: android/ijkplayer
       env:
-        NEXUS_USERNAME: befovy
+        NEXUS_USERNAME: bileskou
         NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.SIGN_KEYID }}
         ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGN_KEY }}
