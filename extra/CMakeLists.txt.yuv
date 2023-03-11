@@ -55,7 +55,7 @@ set(ly_source_files
 
 if(ANDROID)
   if(${ANDROID_ABI} STREQUAL "armeabi-va7")
-    add_definitions(-DLIBYUV_NEON)
+    add_definitions(-LIBYUV_NEON)
     list(APPEND ly_source_files
       source/compare_neon.cc.neon
       source/rotate_neon.cc.neon
@@ -63,7 +63,7 @@ if(ANDROID)
       source/scale_neon.cc.neon
     )
   elseif(${ANDROID_ABI} STREQUAL "arm64-v8a")
-    add_definitions(-DLIBYUV_NEON)
+    add_definitions(-LIBYUV_NEON)
     list(APPEND ly_source_files
       source/compare_neon64.cc
       source/rotate_neon64.cc
