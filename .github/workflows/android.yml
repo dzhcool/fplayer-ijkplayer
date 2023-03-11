@@ -21,12 +21,12 @@ jobs:
     - name: Cache android ndk
       uses: actions/cache@v2
       with:
-        path: $ANDROID_HOME/ndk/16.1.4479499
-        key: ${{ runner.os }}-ndk16.1.4479499
+        path: $ANDROID_HOME/ndk/21.1.6352462
+        key: ${{ runner.os }}-ndk21.1.6352462
 
     - name: Setup ndk
       run: |
-        yes 2>/dev/null | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;16.1.4479499" "cmake;3.10.2.4988404"
+        yes 2>/dev/null | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;21.1.6352462" "cmake;3.10.2.4988404"
 
 
     - name: Cache android extra
@@ -41,7 +41,7 @@ jobs:
 
     - name: Init extra for android
       run: |
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         bash init-android.sh
         bash init/init-android-boringssl.sh
         bash init/init-android-libsrt.sh
@@ -72,7 +72,7 @@ jobs:
       if: steps.cache-ffmpeg-build.outputs.cache-hit != 'true'
       run: |
         cd android/contrib
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         bash compile-boringssl.sh all
         bash compile-libsrt.sh all
         wget --no-check-certificate https://raw.githubusercontent.com/FFmpeg/gas-preprocessor/master/gas-preprocessor.pl
@@ -82,7 +82,7 @@ jobs:
     - name: Build with Gradle
       working-directory: android/ijkplayer
       run: |
-        export ANDROID_NDK=$ANDROID_HOME/ndk/16.1.4479499/
+        export ANDROID_NDK=$ANDROID_HOME/ndk/21.1.6352462/
         ./gradlew build -PIJK_CXX_STL=c++_shared
         ./gradlew assembleRelease -PIJK_CXX_STL=c++_shared
 
