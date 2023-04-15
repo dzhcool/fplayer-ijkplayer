@@ -146,6 +146,7 @@ if [ "$FF_ARCH" = "i386" ]; then
 elif [ "$FF_ARCH" = "x86_64" ]; then
     FF_BUILD_NAME="ffmpeg-x86_64"
     FF_XCRUN_OSVERSION="-mmacosx-version-min=10.10"
+    FF_BUILD_NAME_OPENSSL=openssl-x86_64
     FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS $FFMPEG_CFG_FLAGS_SIMULATOR"
 else
     echo "unknown architecture $FF_ARCH";
@@ -195,27 +196,43 @@ FFMPEG_CFLAGS="$FFMPEG_CFLAGS $FF_XCODE_BITCODE"
 FFMPEG_LDFLAGS="$FFMPEG_CFLAGS"
 
 
-# --------------------
-echo "----------------------"
+# # --------------------
+# echo "----------------------"
+# echo "[*] check OpenSSL"
+# echo "----------------------"
+# FFMPEG_DEP_OPENSSL_INC=/usr/local/opt/openssl/include
+# FFMPEG_DEP_OPENSSL_LIB=/usr/local/opt/openssl/lib
+# #--------------------
+# # with openssl
+# # brew install openssl
+
+# export PKG_CONFIG_PATH="${FF_BUILD_ROOT}/build/lib/pkgconfig"
+# echo "PKG_CONFIG_PATH ${PKG_CONFIG_PATH}"
+# mkdir -p ${PKG_CONFIG_PATH}
+
+# if [ -f "${FFMPEG_DEP_OPENSSL_LIB}/libssl.dylib" ]; then
+#     FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-openssl"
+#     FFMPEG_CFLAGS="$FFMPEG_CFLAGS -I${FFMPEG_DEP_OPENSSL_INC}"
+#     FFMPEG_DEP_LIBS="$FFMPEG_CFLAGS -L${FFMPEG_DEP_OPENSSL_LIB} -lssl -lcrypto"
+#     cp -f /usr/local/opt/openssl/lib/pkgconfig/* ${PKG_CONFIG_PATH}
+# else
+#    echo "openssl not found"
+# fi
+#--------------------
+echo "\n--------------------"
 echo "[*] check OpenSSL"
 echo "----------------------"
-FFMPEG_DEP_OPENSSL_INC=/usr/local/opt/openssl/include
-FFMPEG_DEP_OPENSSL_LIB=/usr/local/opt/openssl/lib
+FFMPEG_DEP_OPENSSL_INC=$FF_BUILD_ROOT/../build/$FF_BUILD_NAME_OPENSSL/output/include
+FFMPEG_DEP_OPENSSL_LIB=$FF_BUILD_ROOT/../build/$FF_BUILD_NAME_OPENSSL/output/lib
+echo $FFMPEG_DEP_OPENSSL_LIB
 #--------------------
 # with openssl
-# brew install openssl
-
-export PKG_CONFIG_PATH="${FF_BUILD_ROOT}/build/lib/pkgconfig"
-echo "PKG_CONFIG_PATH ${PKG_CONFIG_PATH}"
-mkdir -p ${PKG_CONFIG_PATH}
-
-if [ -f "${FFMPEG_DEP_OPENSSL_LIB}/libssl.dylib" ]; then
+if [ -f "${FFMPEG_DEP_OPENSSL_LIB}/libssl.a" ]; then
     FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-openssl"
+
+    echo "OpenSSL Include" $FFMPEG_DEP_OPENSSL_INC
     FFMPEG_CFLAGS="$FFMPEG_CFLAGS -I${FFMPEG_DEP_OPENSSL_INC}"
     FFMPEG_DEP_LIBS="$FFMPEG_CFLAGS -L${FFMPEG_DEP_OPENSSL_LIB} -lssl -lcrypto"
-    cp -f /usr/local/opt/openssl/lib/pkgconfig/* ${PKG_CONFIG_PATH}
-else
-   echo "openssl not found"
 fi
 
 
@@ -276,7 +293,7 @@ echo "\n--------------------"
 echo "[*] compile ffmpeg"
 echo "--------------------"
 cp config.* $FF_BUILD_PREFIX
-make -j3 $FF_GASPP_EXPORT
+make -j10 $FF_GASPP_EXPORT
 make install
 mkdir -p $FF_BUILD_PREFIX/include/libffmpeg
 cp -f config.h $FF_BUILD_PREFIX/include/libffmpeg/config.h

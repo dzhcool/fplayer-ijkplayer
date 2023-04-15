@@ -169,7 +169,7 @@ if (WIN32)
     target_link_libraries(IjkPlayer ws2_32 secur32 avrt shlwapi advapi32 shell32 kernel32 user32)
 elseif (APPLE)
     # brew install openssl
-    set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
+    set(OPENSSL_ROOT_DIR ../osx/build/openssl-x86_64/output)
     find_package(OpenSSL REQUIRED)
     target_link_libraries(IjkPlayer ${OPENSSL_LIBRARIES})
     target_link_libraries(IjkPlayer z)
