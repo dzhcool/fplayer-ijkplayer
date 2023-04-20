@@ -221,7 +221,7 @@ void ijkff_set_event_cb(IjkFFMediaPlayer *fp, void *userdata, ijkff_event_cb cb)
 
 int ijkplayer_overlay_draw(void *userdata,
     int w, int h, int sar_num, int sar_den,
-    int planes, uint16_t *linesize, uint8_t **pixels)
+    int planes, uint16_t *linesize, uint8_t **pixels,uint32_t format)
 {
     IjkFFMediaPlayer *fp = userdata;
     int ret = -1;
@@ -234,6 +234,7 @@ int ijkplayer_overlay_draw(void *userdata,
         overlay->planes = planes;
         overlay->pitches = linesize;
         overlay->pixels = pixels;
+        overlay->format = format;
         fp->overlay_cb(fp->overlay_cb_data, overlay);
         ret = 0;
     }

@@ -6,5 +6,8 @@
         "**/ijkplayer-x86/**": true,
         "**/ijkplayer-x86_64/**": true,
     },
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "files.associations": {
+        "ijkplayer_desktop.h": "c"
+    }
 }

@@ -32,7 +32,7 @@ IjkMediaPlayer *ijkmp_desktop_create(int(*msg_loop)(void *), int vout_type);
 
 typedef int (*ijkmp_video_draw)(void *userdata, 
     int w, int h, int sar_num, int sar_den, 
-    int planes, uint16_t *linesize, uint8_t **pixels);
+    int planes, uint16_t *linesize, uint8_t **pixels,uint32_t format);
 
 int ijkmp_set_video_callback(IjkMediaPlayer *mp, void *userdata, ijkmp_video_draw callback);
 
