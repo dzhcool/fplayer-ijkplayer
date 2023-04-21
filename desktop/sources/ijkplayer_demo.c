@@ -96,6 +96,8 @@ static void error_callback(int error, const char *description)
 //         glfwSetWindowShouldClose(window, GLFW_TRUE);
 // }
 
+float speed = 1.0f;
+
 int processEvent(IjkFFMediaPlayer *fp, IjkDemoInfo *info,
                  const SDL_Event *event)
 {
@@ -123,13 +125,16 @@ int processEvent(IjkFFMediaPlayer *fp, IjkDemoInfo *info,
         case SDLK_UP:
         case SDLK_DOWN:
         {
-            float volume = ijkff_get_playback_volume(fp);
-            volume += event->key.keysym.sym == SDLK_DOWN ? -0.1f : 0.1f;
-            if (volume < 0.0f)
-                volume = 0.0f;
-            if (volume > 1.0f)
-                volume = 1.0f;
-            ijkff_set_playback_volume(fp, volume);
+            // float volume = ijkff_get_playback_volume(fp);
+            
+            speed += event->key.keysym.sym == SDLK_DOWN ? -0.1f : 0.1f;
+            if (speed < 0.0f)
+                speed = 0.0f;
+            if (speed > 2.0f)
+                speed = 2.0f;
+            printf("speed: %f\n", speed);
+            // ijkff_set_playback_volume(fp, volume);
+            ijkff_set_speed(fp,speed);
             break;
         }
         case SDLK_LEFT:
@@ -291,6 +296,7 @@ int main(int argc, char *argv[])
     ijkff_set_option(fp, "fcc-bgra", "overlay-format", IJK_OPT_CATEGORY_PLAYER);
     ijkff_set_int_option(fp, 1, "start-on-prepared", IJK_OPT_CATEGORY_PLAYER);
     ijkff_set_data_source(fp, "https://player.alicdn.com/video/aliyunmedia.mp4");
+    ijkff_set_int_option(fp, 1, "soundtouch", IJK_OPT_CATEGORY_PLAYER);
 
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO);
 

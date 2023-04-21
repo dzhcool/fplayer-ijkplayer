@@ -117,7 +117,7 @@ target_include_directories(IjkPlayer PRIVATE "${IJK_DESKTOP_PTHREAD_BUILD_DIR}/.
 target_include_directories(IjkPlayer PRIVATE glfw/deps)
 target_include_directories(IjkPlayer PRIVATE glfw/include)
 
-target_link_libraries(IjkPlayer ijksdl_static ijkplayer_static yuv)
+target_link_libraries(IjkPlayer ijksdl_static ijksoundtouch ijkplayer_static yuv )
 
 
 if (WIN32)

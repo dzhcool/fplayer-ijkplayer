@@ -96,3 +96,8 @@ esac
 ./init/init-libyuv.sh
 ./init/init-portaudio.sh
 ./init/init-glfw.sh
+./init/init-android-soundtouch.sh
+
+cp extra/CMakeLists.txt.soundtouch ijkmedia/ijksoundtouch/CMakeLists.txt
+
+

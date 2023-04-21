@@ -132,6 +132,7 @@ if (WIN32)
 endif()
 
 if (NOT IJK_DESKTOP_UNI)
+    target_link_libraries(${IJKPLAYER_LIB_NAME} ijksoundtouch)
     target_link_libraries(${IJKPLAYER_LIB_NAME} ijksdl)
 endif()
 
