@@ -135,6 +135,19 @@ if (APPLE)
     cmake_print_variables(FFMPEG_STATIC_LIBRARIES)
 
     target_link_libraries(IjkPlayer ${SDL2_LIBRARIES})
+
+    set_target_properties(IjkPlayer PROPERTIES
+        FRAMEWORK TRUE
+        FRAMEWORK_VERSION C
+        MACOSX_FRAMEWORK_IDENTIFIER dev.fplayer.IjkPlayer
+        MACOSX_FRAMEWORK_INFO_PLIST Info.plist
+        # "current version" in semantic format in Mach-O binary file
+        VERSION 1.0.0
+        # "compatibility version" in semantic format in Mach-O binary file
+        SOVERSION 1.0.0
+        PUBLIC_HEADER ${CMAKE_CURRENT_LIST_DIR}/sources/ijkplayer_desktop.h
+        XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "ijkplayer"
+    )
 endif ()
 
 if (WIN32)

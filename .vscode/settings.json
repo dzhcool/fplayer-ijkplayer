@@ -9,6 +9,7 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "files.associations": {
         "ijkplayer_desktop.h": "c",
-        "ijksoundtouch_wrap.h": "c"
+        "ijksoundtouch_wrap.h": "c",
+        "pipeline_desktop.h": "c"
     }
 }
