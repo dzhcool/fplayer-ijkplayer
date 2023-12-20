@@ -25,6 +25,7 @@ if (NOT DEFINED FIJKROOT_PATH)
 endif ()
 
 if (IJK_DESKTOP_UNI)
+    add_subdirectory(ijksoundtouch)
     add_subdirectory(portaudio)
     add_subdirectory(ijkyuv)
 

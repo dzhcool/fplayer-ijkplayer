@@ -58,7 +58,7 @@ static int func_display_overlay(SDL_Vout *vout, SDL_VoutOverlay *overlay)
     if (opaque->cb) {
         ret = opaque->cb(opaque->cb_data, overlay->w, overlay->h, 
             overlay->sar_num, overlay->sar_den, 
-            overlay->planes, overlay->pitches, overlay->pixels);
+            overlay->planes, overlay->pitches, overlay->pixels,overlay->format);
     }
     SDL_UnlockMutex(vout->mutex);
     return ret;

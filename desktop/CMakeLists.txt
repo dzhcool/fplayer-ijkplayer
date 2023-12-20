@@ -117,7 +117,7 @@ target_include_directories(IjkPlayer PRIVATE "${IJK_DESKTOP_PTHREAD_BUILD_DIR}/.
 target_include_directories(IjkPlayer PRIVATE glfw/deps)
 target_include_directories(IjkPlayer PRIVATE glfw/include)
 
-target_link_libraries(IjkPlayer ijksdl_static ijkplayer_static yuv)
+target_link_libraries(IjkPlayer ijksdl_static ijksoundtouch ijkplayer_static yuv )
 
 
 if (WIN32)
@@ -135,6 +135,19 @@ if (APPLE)
     cmake_print_variables(FFMPEG_STATIC_LIBRARIES)
 
     target_link_libraries(IjkPlayer ${SDL2_LIBRARIES})
+
+    set_target_properties(IjkPlayer PROPERTIES
+        FRAMEWORK TRUE
+        FRAMEWORK_VERSION C
+        MACOSX_FRAMEWORK_IDENTIFIER dev.fplayer.IjkPlayer
+        MACOSX_FRAMEWORK_INFO_PLIST Info.plist
+        # "current version" in semantic format in Mach-O binary file
+        VERSION 1.0.0
+        # "compatibility version" in semantic format in Mach-O binary file
+        SOVERSION 1.0.0
+        PUBLIC_HEADER ${CMAKE_CURRENT_LIST_DIR}/sources/ijkplayer_desktop.h
+        XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "ijkplayer"
+    )
 endif ()
 
 if (WIN32)
@@ -169,7 +182,7 @@ if (WIN32)
     target_link_libraries(IjkPlayer ws2_32 secur32 avrt shlwapi advapi32 shell32 kernel32 user32)
 elseif (APPLE)
     # brew install openssl
-    set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
+    set(OPENSSL_ROOT_DIR ../osx/build/openssl-x86_64/output)
     find_package(OpenSSL REQUIRED)
     target_link_libraries(IjkPlayer ${OPENSSL_LIBRARIES})
     target_link_libraries(IjkPlayer z)

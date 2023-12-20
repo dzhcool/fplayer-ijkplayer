@@ -85,7 +85,7 @@
 #ifndef WIN32
 #include <stdatomic.h>
 #endif
-#if defined(__ANDROID__)
+#if defined(__ANDROID__)  || defined(_WIN32) || defined(__MACOSX__)
 #include "ijksoundtouch/ijksoundtouch_wrap.h"
 #endif
 
@@ -1068,7 +1068,7 @@ static void stream_close(FFPlayer *ffp)
     sws_freeContext(is->sub_convert_ctx);
 #endif
 
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(_WIN32) || defined(__MACOSX__)
     if (ffp->soundtouch_enable && is->handle != NULL) {
         ijk_soundtouch_destroy(is->handle);
     }
@@ -2499,7 +2499,7 @@ static int audio_decode_frame(FFPlayer *ffp)
     av_unused double audio_clock0;
     int wanted_nb_samples;
     Frame *af;
-#if defined(__ANDROID__)
+#if defined(__ANDROID__)  || defined(_WIN32) || defined(__MACOSX__)
     int translate_time = 1;
 #endif
 
@@ -2614,8 +2614,9 @@ reload:
         is->audio_buf = is->audio_buf1;
         int bytes_per_sample = av_get_bytes_per_sample(is->audio_tgt.fmt);
         resampled_data_size = len2 * is->audio_tgt.channels * bytes_per_sample;
-#if defined(__ANDROID__)
+#if defined(__ANDROID__)  || defined(_WIN32) || defined(__MACOSX__)
         if (ffp->soundtouch_enable && ffp->pf_playback_rate != 1.0f && !is->abort_request) {
+            printf("soundtouch process\n");
             av_fast_malloc(&is->audio_new_buf, &is->audio_new_buf_size, out_size * translate_time);
             for (int i = 0; i < (resampled_data_size / 2); i++)
             {
@@ -2679,7 +2680,7 @@ static void sdl_audio_callback(void *opaque, Uint8 *stream, int len)
 
     if (ffp->pf_playback_rate_changed) {
         ffp->pf_playback_rate_changed = 0;
-#if defined(__ANDROID__)
+#if defined(__ANDROID__)  || defined(_WIN32) || defined(__MACOSX__)
         if (!ffp->soundtouch_enable) {
             SDL_AoutSetPlaybackRate(ffp->aout, ffp->pf_playback_rate);
         }
@@ -3718,7 +3719,7 @@ static VideoState *stream_open(FFPlayer *ffp, const char *filename, AVInputForma
     is->iformat = iformat;
     is->ytop    = 0;
     is->xleft   = 0;
-#if defined(__ANDROID__)
+#if defined(__ANDROID__)  || defined(_WIN32) || defined(__MACOSX__)
     if (ffp->soundtouch_enable) {
         is->handle = ijk_soundtouch_create();
     }
